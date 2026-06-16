@@ -47,6 +47,23 @@
             .post-preview > a:hover {
                 color: #5c3526 !important;
             }
+            
+            /* Nav links: white on desktop while floating over the photo header */
+            @media (min-width: 992px) {
+            #mainNav .navbar-nav > li.nav-item > a.nav-link {
+                color: #fff !important;
+            }
+            #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+                #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+            #mainNav.is-fixed .navbar-nav > li.nav-item > a.nav-link {
+                color: #7a4a3a !important;
+            }
+            #mainNav.is-fixed .navbar-nav > li.nav-item > a.nav-link:hover,
+            #mainNav.is-fixed .navbar-nav > li.nav-item > a.nav-link:focus {
+                color: #5c3526 !important;
+            }
         </style>
     </head>
     <body>
