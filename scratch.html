@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interior Design - Creating Spaces That Welcome You Home</title>
+    <link rel="stylesheet" href="scratch-styles.css">
+</head>
+<body>
+
+    <!-- Hero section with custom background image -->
+    <div id="hero">
+        <h1>Interior Design - The Art of Home</h1>
+        <p>How color, texture, and structure turn a house to a home</p>
+    </div>
+
+    <div id="main-content">
+
+        <!-- Introduction -->
+        <p>
+            My passion for interior design began in 2022 at my first job working in a furniture showroom and design service center.
+            The creative process of combining elelments and textures to create inviting spaces captivated me. I learned how color
+            texure, pattern, material, and shape all combine harmoiniously to make a room feel as if it has always existed.
+            I believe a home is the foundation of a family and strive to create spaces that are warm, comfortable, practical, and 
+            inviting to all those who need a place to call home. 
+        </p>
+
+        <!-- Section: nested list (ordered list containing an unordered list) -->
+        <div id="styles-section">
+            <h2>My Design Process: From House to Home</h2>
+            <p>Here is how I approach a new space.</p>
+            <ol>
+                <li>Draw and study the room's natural light and layout</li>
+                <li>
+                    Choose a color palette - My favorites include:
+                    <ul>
+                        <li>Warm neutrals and burgandy</li>
+                        <li>Soft creamy yellows</li>
+                        <li>Cream and ivory tones</li>
+                        <li>Airy baby blues and white</li>
+                    </ul>
+                </li>
+                <li>Select furniture that is comfortable to live in and stylish</li>
+                <li>Select textiles, art, and lighting for greater depth</li>
+                <li>Step back, adjust, and complete each detail</li>
+            </ol>
+
+            <!-- On-page anchor link target reference -->
+            <p>Curious about where I find new styles? <a class="anchor-link" href="#favorite-styles">Jump to see my inspiration</a></p>
+        </div>
+
+        <!-- Image not from Bootstrap theme -->
+        <h2>A Room I Love</h2>
+                    <hr class="my-4" />
+        <img class="design-photo" src="https://i.pinimg.com/1200x/05/c0/da/05c0da6b12bd3e33f508c9d273927ec1.jpg" alt="Cozy warm-toned living room" height="550">
+        <p>
+            Soft, warm tones like the ones in this image are exactly the kind of palette I gravitate
+            toward when designing a space — muted, calming, while still full of color and personality.
+        </p>
+
+        <!-- Section that is the target of the on-page anchor -->
+        <h2 id="favorite-styles">My Design Inspiration</h2>
+        <p>
+            Working with clients means combining core interior design principles with the desires and taste
+            of a the client. Drawing inspiration from other projects can help to bridge the gap between
+            designer and client.
+        </p>
+
+        <!-- Media section: YouTube video and Tableau viz -->
+        <div id="media-section">
+            <h2>Watch: Design inspiration from this new home</h2>
+            <p>
+                <!--
+                  TO DO: Replace the src below with your own chosen YouTube video's embed link.
+                  In YouTube, click Share > Embed, and copy just the URL inside the src=""
+                  of the iframe code they give you. Example format:
+                  https://www.youtube.com/embed/VIDEO_ID
+                -->
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/M4pgMrkI6bU?si=nWTutf2iAYPqzBJQ"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </p>
+
+            <h2>Explore: Live Data Visualization: Interior Design Trends</h2>
+            <p>
+                <!--
+                  TO DO: Replace the Tableau embed below with your own chosen Tableau Public viz.
+                  On Tableau Public, open a viz, click "Share", and copy the embed code
+                  they provide, then paste it here in place of the placeholder div.
+                -->
+                <div class="tableau-wrapper">
+                    <div class='tableauPlaceholder' id='viz1781632252788' style='position: relative'>
+                        <noscript>
+                            <a href='#'>
+                                <img alt='Dashboard 5 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2025InteriordesignTrends&#47;Dashboard5&#47;1_rss.png' style='border: none' />
+                            </a>
+                        </noscript>
+                        <object class='tableauViz'  style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                            <param name='embed_code_version' value='3' />
+                            <param name='site_root' value='' />
+                            <param name='name' value='2025InteriordesignTrends&#47;Dashboard5' />
+                            <param name='tabs' value='no' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;20&#47;2025InteriordesignTrends&#47;Dashboard5&#47;1.png' />
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='en-US' />
+                        </object>
+                    </div>
+                    <script type='text/javascript'>
+                        var divElement = document.getElementById('viz1781632252788');
+                        var vizElement = divElement.getElementsByTagName('object')[0];
+                        if ( divElement.offsetWidth > 800 ) {
+                            vizElement.style.width='800px';
+                            vizElement.style.height='600px';
+                        } else if ( divElement.offsetWidth > 500 ) {
+                            vizElement.style.width='100%';
+                            vizElement.style.height='500px';
+                        } else {
+                            vizElement.style.width='100%';
+                            vizElement.style.height='400px';
+                        }
+                        var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+                    </script>
+                </div>
+
+<!-- Web app section: embedded Interior Design Style Quiz -->
+    <div id="app-section">
+        <h2>Try It Yourself: Interior Design Style Quiz</h2>
+    
+        <div class="app-wrapper">
+            <iframe src="design-quiz.html" title="Interior Design Style Quiz web app"></iframe>
+        </div>
+    </div>
+
+    <!-- Navigation back to professional site -->
+    <div id="site-nav">
+        <a href="index.html">&larr; Back to my professional site</a>
+    </div>
+
+    <footer>
+        Copyright &copy; Brooklyn Reeve 2026
+    </footer>
+
+</body>
+</html>

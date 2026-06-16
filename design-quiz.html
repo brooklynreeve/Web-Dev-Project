@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interior Design Style Quiz</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--ivory:#F7F4EF;
+--taupe:#D6C8BC;
+--brown:#8A6A58;
+--espresso:#4A3A32;
+--sage:#8E9B84;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+background:var(--ivory);
+font-family:'Open Sans',sans-serif;
+color:var(--espresso);
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1,h2,h3{
+font-family:'Cormorant Garamond',serif;
+}
+
+.hero{
+text-align:center;
+margin-bottom:30px;
+}
+
+.hero h1{
+font-size:3.5rem;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+}
+
+.progress-wrap{
+background:#e6dfd8;
+height:14px;
+border-radius:20px;
+overflow:hidden;
+margin:25px 0;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:var(--sage);
+transition:.3s;
+}
+
+.answers{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:18px;
+}
+
+.card{
+background:white;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card p{
+padding:14px;
+margin:0;
+font-weight:600;
+}
+
+#result{
+display:none;
+text-align:center;
+}
+
+#result img{
+max-width:700px;
+width:100%;
+border-radius:18px;
+margin:20px 0;
+}
+
+.breakdown{
+max-width:600px;
+margin:20px auto;
+text-align:left;
+}
+
+.bar{
+height:12px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:12px;
+}
+
+.fill{
+height:100%;
+background:var(--brown);
+}
+
+button{
+background:var(--brown);
+color:white;
+border:none;
+padding:14px 24px;
+border-radius:10px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>What's Your Interior Design Style?</h1>
+<p>Answer a few visual questions and discover the home aesthetic that best matches your personality.</p>
+</div>
+
+<div class="progress-wrap"><div id="progress" class="progress"></div></div>
+
+<div id="quiz"></div>
+
+<div id="result">
+<h2 id="styleName"></h2>
+<img id="styleImage" src="">
+<p id="styleDescription"></p>
+<div id="percentages" class="breakdown"></div>
+<button onclick="location.reload()">Take Quiz Again</button>
+</div>
+
+</div>
+
+<script>
+
+const styleImages={
+modern:'https://m.media-amazon.com/images/I/81fdtx9Es8L._AC_SX679_.jpg',
+scandinavian:'https://i.pinimg.com/736x/15/d2/9e/15d29ed794ecd9bd8914ac526dd78651.jpg',
+farmhouse:'https://i.pinimg.com/1200x/4b/11/32/4b113220749ebd0b3f2830ec85b13172.jpg',
+industrial:'https://i.pinimg.com/736x/5a/dd/da/5addda6443d5b98add5dc44772a22295.jpg',
+bohemian:'https://i.pinimg.com/1200x/26/2b/0d/262b0d1bc0bf03da3195d9ad50f61a0b.jpg',
+traditional:'https://i.pinimg.com/736x/bf/4c/5d/bf4c5d6e98cca5a2f939122276ad9383.jpg',
+midcentury:'https://i.pinimg.com/1200x/b3/02/d1/b302d14e5594e6a8ba1abf17b26b6600.jpg',
+coastal:'https://i.pinimg.com/736x/2c/e4/3a/2ce43a37a72a18d5cea13b51dd786760.jpg'
+};
+
+const results={
+modern:["Modern","Clean lines, bold contrast, and contemporary elegance."],
+scandinavian:["Scandinavian","Bright spaces, natural textures, and cozy simplicity."],
+farmhouse:["Farmhouse","Warm, welcoming rooms filled with rustic charm."],
+industrial:["Industrial","Urban loft vibes with metal, brick, and character."],
+bohemian:["Bohemian","Creative, colorful, and layered with personality."],
+traditional:["Traditional","Timeless furnishings and classic sophistication."],
+midcentury:["Mid-Century Modern","Vintage-inspired design with sleek functionality."],
+coastal:["Coastal","Relaxed, airy interiors inspired by the shoreline."]
+};
+
+const scores={modern:0,scandinavian:0,farmhouse:0,industrial:0,bohemian:0,traditional:0,midcentury:0,coastal:0};
+
+const questions=[
+{q:"Which room appeals to you most?",a:[
+["modern","Modern Penthouse"],["scandinavian","Nordic Retreat"],["farmhouse","Country Cottage"],["coastal","Beach House"]
+]},
+{q:"Choose a color palette.",a:[
+["modern","Black & White"],["bohemian","Rich Earth Tones"],["coastal","Soft Blues"],["farmhouse","Warm Neutrals"]
+]},
+{q:"Pick a material.",a:[
+["industrial","Steel & Brick"],["farmhouse","Reclaimed Wood"],["modern","Glass"],["scandinavian","Light Oak"]
+]},
+{q:"Which furniture style fits you?",a:[
+["traditional","Classic"],["midcentury","Retro Modern"],["modern","Minimal"],["bohemian","Eclectic"]
+]},
+{q:"Your ideal decor?",a:[
+["bohemian","Global Textiles"],["coastal","Seashell Accents"],["industrial","Factory-Inspired"],["traditional","Elegant Antiques"]
+]},
+{q:"Choose a lighting style.",a:[
+["industrial","Pendant Edison Bulbs"],["modern","Architectural Fixtures"],["farmhouse","Lantern Lighting"],["midcentury","Sputnik Chandelier"]
+]},
+{q:"Favorite atmosphere?",a:[
+["scandinavian","Calm and Cozy"],["modern","Sophisticated"],["bohemian","Creative"],["coastal","Relaxed"]
+]},
+{q:"Pick a dream living room.",a:[
+["traditional","Formal Sitting Room"],["midcentury","1950s Inspired"],["farmhouse","Rustic Gathering Space"],["modern","Luxury Minimalism"]
+]}
+];
+
+let current=0;
+
+function imageForStyle(style){
+return styleImages[style];
+}
+
+function renderQuestion(){
+const q=questions[current];
+
+document.getElementById("quiz").innerHTML=`
+<h2>${q.q}</h2>
+<div class="answers">
+${q.a.map(choice=>`
+<div class="card" onclick="selectAnswer('${choice[0]}')">
+<img src="${imageForStyle(choice[0])}">
+<p>${choice[1]}</p>
+</div>
+`).join("")}
+</div>
+`;
+
+document.getElementById("progress").style.width=((current/questions.length)*100)+"%";
+}
+
+function selectAnswer(style){
+scores[style]++;
+current++;
+if(current<questions.length){
+renderQuestion();
+}else{
+showResult();
+}
+}
+
+function showResult(){
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+document.getElementById("progress").style.width="100%";
+
+let winner=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+
+document.getElementById("styleName").innerText=results[winner][0];
+document.getElementById("styleDescription").innerText=results[winner][1];
+document.getElementById("styleImage").src=styleImages[winner];
+
+const total=Object.values(scores).reduce((a,b)=>a+b,0);
+
+let html="<h3>Your Style Breakdown</h3>";
+
+for(const style in scores){
+let pct=Math.round((scores[style]/total)*100);
+html+=`
+<div>${results[style][0]} (${pct}%)</div>
+<div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+`;
+}
+document.getElementById("percentages").innerHTML=html;
+}
+
+renderQuestion();
+</script>
+
+</body>
+</html>
